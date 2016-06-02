@@ -1,0 +1,175 @@
+<DOCTYPE! html>
+<html lang="en">
+<head></head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<body>
+<h1>I'm a Chatbot</h1>
+<p>Let's start a conversation!</p>
+	<input type="text" id="initialquestion"/>
+	<div id="response"></div>
+<button class="btn-success" onclick="runarrays()">Ask me anything!</button>
+	
+<script>
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+	
+function clear() {
+	document.getElementById('initialquestion').innerHTML = " ";
+}
+
+function runarrays() {
+
+var greeting = ["hi","hello","hey","yo","whats up","how are you","hows it going","good afternoon","good morning", "nice to meet you"];
+	
+var responsea = ["hi, I'm a bot, how are you?",
+			    "yo, what's good my man?",
+				"howdy, how are you doing on this fine day?"];
+	
+var said = document.getElementById('initialquestion').value;
+	
+var punctRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]/g;
+//fixes the spaces after I remove a bunch of punctuation
+var spaceRE = /\s+/g;
+var str = said; 
+//use string replace to strip the text
+var saidStripped = str.replace(punctRE, '').replace(spaceRE, ' ');
+//convert to lower case
+var saidLower = saidStripped.toLowerCase();
+
+for(var i=0;i<greeting.length;i++) {
+	console.log(saidLower);
+	var x = saidLower.indexOf(greeting[i]);
+	console.log(x);
+	if(x>=0) {
+			shuffle(responsea);
+			document.getElementById('response').innerHTML = responsea[0];
+		    clear();
+			return;
+		
+		}
+	else {
+		postgreeting();
+	};
+	};
+};
+
+function postgreeting() {
+
+var inputpostgreeting = ["tired",
+						 "sleepy",
+						 "hungry",
+						 "good",
+						 "happy",
+						 "sad",
+						 "angry",
+						 "bad",
+						 "not much",
+						 "chillin"];
+	
+var responseb = ["yeh, i feel that, do you have any hobbies?",
+			    "well i'm not, but's thats ok, do you have any hobbies?",
+				"cool, that's great, do you have any hobbies?"];
+var said = document.getElementById('initialquestion').value;
+	
+var punctRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]/g;
+//fixes the spaces after I remove a bunch of punctuation
+var spaceRE = /\s+/g;
+var str = said; 
+//use string replace to strip the text
+var saidStripped = str.replace(punctRE, '').replace(spaceRE, ' ');
+//convert to lower case
+var saidLower = saidStripped.toLowerCase();
+	
+for (var j=0;j<inputpostgreeting.length;j++) {
+	var y = saidLower.indexOf(inputpostgreeting[j]);
+		if (y>=0) {
+			shuffle(responseb);
+			document.getElementById('response').innerHTML = responseb[0];
+			clear();
+			return;
+		}
+	else {
+		hobbies();
+	};
+	};
+};
+	
+function hobbies() {
+var inputhobbies = ["ski",
+				   "music",
+				   "eat",
+				   "read",
+				   "code",
+				   "work out",
+				   "sports",
+				   "hiking",
+				   "fishing"];
+	
+var responsec = ["really! me too! we can be friends, but I got to go! let's talk again later.",
+				"oof, i don't like that. i'd rather go to bed. so that's what i will do. goodbye.",
+				"that's awesome and all, but I got to go. cya!"];
+	
+var said = document.getElementById('initialquestion').value;
+	
+var punctRE = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]/g;
+//fixes the spaces after I remove a bunch of punctuation
+var spaceRE = /\s+/g;
+var str = said; 
+//use string replace to strip the text
+var saidStripped = str.replace(punctRE, '').replace(spaceRE, ' ');
+//convert to lower case
+var saidLower = saidStripped.toLowerCase();
+	
+for (var k=0;k<inputhobbies.length;k++) {
+	 var z = saidLower.indexOf(inputhobbies[k]);
+	    if(z>=0) {
+			shuffle(responsec);
+			document.getElementById('response').innerHTML = responsec[0];
+			clear();
+			return;
+		} else {
+			notsure();
+		};
+	};
+	
+};
+function notsure() {
+	document.getElementById('response').innerHTML = "I have no idea what you're saying dawg.";
+	clear();
+}
+
+
+$(document).keypress(function (e) {
+    if (e.which == 13) {
+       runarrays();
+    }
+});
+
+	
+</script>
+	
+	</body>
+	</html>
+	
+	</DOCTYPE!>
